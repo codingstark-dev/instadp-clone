@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next';
 import React from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
-import { PostType } from '../types/post';
+// import { PostType } from '../types/post';
 
 // type IndexProps = {
 //   posts: PostType[];
