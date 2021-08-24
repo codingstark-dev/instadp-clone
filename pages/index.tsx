@@ -1,16 +1,16 @@
-import { format, parseISO } from 'date-fns';
+// import { format, parseISO } from 'date-fns';
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
-import React, { CSSProperties } from 'react';
+// import Link from 'next/link';
+import React from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { PostType } from '../types/post';
 
-type IndexProps = {
-  posts: PostType[];
-};
-
-export const Index = ({ posts }: IndexProps): JSX.Element => {
+// type IndexProps = {
+//   posts: PostType[];
+// };
+// { posts }: IndexProps
+export const Index = (): JSX.Element => {
   return (
     <Layout>
       <ul className=" flex justify-evenly  font-semibold p-4 ">
