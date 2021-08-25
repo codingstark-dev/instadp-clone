@@ -1,10 +1,7 @@
 import { useTheme } from 'next-themes';
 import React from 'react';
 
-/**
- * Based off of gatsby-theme-novela
- * https://github.com/narative/gatsby-theme-novela/blob/master/%40narative/gatsby-theme-novela/src/components/Navigation/Navigation.Header.tsx
- */
+
 
 const ThemeSwitch = (): JSX.Element => {
   const [mounted, setMounted] = React.useState(false);

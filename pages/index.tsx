@@ -1,33 +1,62 @@
 // import { format, parseISO } from 'date-fns';
-import { GetStaticProps } from 'next';
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  GetStaticProps,
+  GetStaticPropsContext,
+} from 'next';
+import { useRouter } from 'next/router';
 // import Link from 'next/link';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
+import { useState } from 'react';
 // import { PostType } from '../types/post';
 
 // type IndexProps = {
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = (): JSX.Element => {
+export const Index = ({data}): JSX.Element => {
+  let router = useRouter();
+
+  const [inputUrl, setinputUrl] = useState('');
+  const handleSearch = (event: ChangeEvent) => {
+    event.preventDefault();
+    setinputUrl(event.target['value']);
+
+    // console.log(inputUrl);
+  };
+  const handleButton = () => {
+    let instaReg =
+      '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
+    let result = RegExp(instaReg, 'g');
+
+    if (inputUrl) {
+      console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
+
+      router.push(`/?url=${inputUrl}`);
+    } else {
+    }
+  };
+
   return (
     <Layout>
-
-      <h1 className="font-bold text-2xl mb-1 mt-5">Download Instagram Reels</h1>
-      <p className="text-gray-500 ">
+      <h1 className="font-bold text-2xl mb-1 mt-2">Download Instagram Reels</h1>
+      <p className="opacity-80">
         Search and download Instagram Reels video with our Reels Downloader
       </p>
-      <br />
-      <div className="relative text-gray-600 shadow-md rounded-lg dark:bg-gray-200">
+      <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
         <input
+          onChange={handleSearch}
           type="search"
           name="search"
-          placeholder="Post link or username..."
+          placeholder="Enter Reels/Video/IGTV Url ..."
           className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none "
         />
         <button
           type="submit"
+          onClick={handleButton}
           className="absolute right-0 top-0 mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
         >
           <svg
@@ -45,6 +74,12 @@ export const Index = (): JSX.Element => {
           <span className="text-sm mr-1">Download</span>
         </button>
       </div>
+      <br />
+      <video controls className="m-1 rounded-lg">
+        <source
+          src={data}
+        />
+      </video>
       {/* 
 
       <h1>Home Page</h1>
@@ -87,11 +122,31 @@ export const Index = (): JSX.Element => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  let data;
   const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  let url = context.query?.url;
+  if (url) {
+    var myHeaders = new Headers();
+    myHeaders.append('url', url as string);
+
+    var requestOptions: RequestInit = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow',
+    };
+
+     data = await fetch(
+      'http://localhost:8000/allinone',
+      requestOptions
+    ).then((response) => response.text());
+    console.log(data);
+  }
 
   return {
-    props: { posts },
+    props: { posts,data },
   };
 };
 

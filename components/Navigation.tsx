@@ -7,7 +7,7 @@ const Navigation = (): JSX.Element => {
       <Link href="/">
         <a className="text-gray-900 dark:text-white pr-6 py-4 font-bold">
           {' '}
-          Insta<span className="text-blue-500 font-bold">Dp</span>
+          InstaVideoSave<span className="text-blue-500 font-bold">.Net</span>
         </a>
       </Link>
       {/* <Link href="/about">
