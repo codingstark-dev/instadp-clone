@@ -225,5 +225,4 @@ export const getServerSideProps: GetServerSideProps = async (
     props: { posts, data },
   };
 };
-
 export default Index;
