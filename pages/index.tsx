@@ -14,8 +14,7 @@ import { useState } from 'react';
 // };
 // { posts }: IndexProps
 export const Index = ({ data }): JSX.Element => {
-  let router = useRouter();
-  console.log(data);
+  const router = useRouter();
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const handleSearch = (event: ChangeEvent) => {
@@ -36,17 +35,16 @@ export const Index = ({ data }): JSX.Element => {
     }
   }, [data]);
   const handleButton = () => {
-    let instaReg =
-      '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
-    let result = RegExp(instaReg, 'g');
+    // const instaReg =
+    //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
+    // const result = RegExp(instaReg, 'g');
 
     if (inputUrl) {
-      console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
+      // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
 
-      router.push(`/?url=${inputUrl}`).then((e) => {
+      router.push(`/?url=${inputUrl}`).then(() => {
         router.reload();
       });
-    } else {
     }
   };
 
@@ -206,12 +204,12 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   let data = null;
   const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  let url = context.query?.url;
+  const url = context.query?.url;
   if (url) {
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append('url', url as string);
 
-    var requestOptions: RequestInit = {
+    const requestOptions: RequestInit = {
       method: 'GET',
       headers: myHeaders,
       redirect: 'follow',
