@@ -1,13 +1,9 @@
 // import { format, parseISO } from 'date-fns';
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  GetStaticProps,
-  GetStaticPropsContext,
-} from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
+
 // import Link from 'next/link';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
@@ -17,16 +13,28 @@ import { useState } from 'react';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = ({data}): JSX.Element => {
+export const Index = ({ data }): JSX.Element => {
   let router = useRouter();
-
+  console.log(data);
   const [inputUrl, setinputUrl] = useState('');
+  const [errorBol, seterrorBol] = useState(false);
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
 
     // console.log(inputUrl);
+
+    //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
+
+  useEffect(() => {
+    if (data == 'link') {
+      seterrorBol(true);
+      setTimeout(() => {
+        seterrorBol(false); // count is 0 here
+      }, 5000);
+    }
+  }, [data]);
   const handleButton = () => {
     let instaReg =
       '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
@@ -35,7 +43,9 @@ export const Index = ({data}): JSX.Element => {
     if (inputUrl) {
       console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
 
-      router.push(`/?url=${inputUrl}`);
+      router.push(`/?url=${inputUrl}`).then((e) => {
+        router.reload();
+      });
     } else {
     }
   };
@@ -74,12 +84,81 @@ export const Index = ({data}): JSX.Element => {
           <span className="text-sm mr-1">Download</span>
         </button>
       </div>
+      {errorBol ? (
+        <div className="text-red-500 text-center font-semibold mt-1">
+          Please Enter Valid Url..
+        </div>
+      ) : (
+        ''
+      )}
+
       <br />
-      <video controls className="m-1 rounded-lg">
-        <source
-          src={data}
-        />
-      </video>
+      {data?.video?.length != 0
+        ? data?.video?.map((e, index) => {
+            return (
+              <div className="flex flex-wrap justify-center m-5" key={index}>
+                <video controls className="rounded-lg">
+                  <source
+                    src={
+                      `https://bot.instasaved.net/proxy.php/?url=` +
+                      encodeURIComponent(e)
+                    }
+                  />
+                </video>
+                <button
+                  type="submit"
+                  onClick={handleButton}
+                  className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm mr-1">Download Video</span>
+                </button>
+              </div>
+            );
+          })
+        : ''}
+      {data?.image?.length != 0
+        ? data?.image?.map((e, index) => {
+            return (
+              <div className="flex justify-center m-5 flex-wrap" key={index}>
+                <img src={e} className=" rounded-lg"></img>
+                <button
+                  type="submit"
+                  onClick={handleButton}
+                  className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm mr-1">Download Image</span>
+                </button>
+              </div>
+            );
+          })
+        : ''}
+      {/* <video controls className="m-1 rounded-lg">
+        <source src={data} />
+      </video> */}
       {/* 
 
       <h1>Home Page</h1>
@@ -125,7 +204,7 @@ export const Index = ({data}): JSX.Element => {
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  let data;
+  let data = null;
   const posts = getAllPosts(['date', 'description', 'slug', 'title']);
   let url = context.query?.url;
   if (url) {
@@ -138,15 +217,14 @@ export const getServerSideProps: GetServerSideProps = async (
       redirect: 'follow',
     };
 
-     data = await fetch(
-      'http://localhost:8000/allinone',
+    data = await fetch(
+      'https://api-insta-zzbpz.ondigitalocean.app/allinone',
       requestOptions
-    ).then((response) => response.text());
-    console.log(data);
+    ).then((response) => response.json());
   }
 
   return {
-    props: { posts,data },
+    props: { posts, data },
   };
 };
 
