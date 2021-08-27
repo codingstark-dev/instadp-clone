@@ -1,6 +1,6 @@
 // import { format, parseISO } from 'date-fns';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 // import Link from 'next/link';
 import React, { ChangeEvent, useEffect } from 'react';
@@ -14,12 +14,12 @@ import { useState } from 'react';
 // };
 // { posts }: IndexProps
 export const Index = ({ data }): JSX.Element => {
-  // const router = useRouter();
-  // const [inputUrl, setinputUrl] = useState('');
+  const router = useRouter();
+  const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
-    // setinputUrl(event.target['value']);
+    setinputUrl(event.target['value']);
 
     // console.log(inputUrl);
 
@@ -38,12 +38,12 @@ export const Index = ({ data }): JSX.Element => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
-    // if (inputUrl) {
-    //   // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-    //   router.push(`/?url=${inputUrl}`).then(() => {
-    //     router.reload();
-    //   });
-    // }
+    if (inputUrl) {
+      // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
+      router.push(`/?url=${inputUrl}`).then(() => {
+        router.reload();
+      });
+    }
   };
 
   return (
