@@ -10,6 +10,8 @@ import { useState } from 'react';
 import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
 
+
+
 // type IndexProps = {
 //   posts: PostType[];
 // };
@@ -97,6 +99,8 @@ export const Index = ({ data, error }): JSX.Element => {
         {loading ? <SvgComponent /> : ''}
 
         <DisplayPage data={data} type="mp4" />
+     
+
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
@@ -146,9 +150,10 @@ export const Index = ({ data, error }): JSX.Element => {
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
+  
   let data = null;
   let error = false;
-  // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  // const posts = getPostBySlug('home',['content']);
   const url = context.query?.url;
   if (url) {
     const myHeaders = new Headers();

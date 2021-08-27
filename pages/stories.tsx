@@ -164,7 +164,6 @@ export const getServerSideProps: GetServerSideProps = async (
       'https://api-insta-zswvj.ondigitalocean.app/stories',
       requestOptions
     ).then((response) => response.json());
-    console.log(data);
     if (data.video?.length == 0 && data?.video != undefined) {
       error = true;
     } else if (data.image?.length == 0 && data?.image != undefined) {

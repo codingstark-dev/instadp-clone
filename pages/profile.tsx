@@ -7,7 +7,6 @@ import Layout from '../components/Layout';
 // import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
 // import { PostType } from '../types/post';
-import DisplayPage from './../components/DisplayDlpage';
 import Link from 'next/link';
 import SvgComponent from '../components/SvgLoader';
 
@@ -195,7 +194,6 @@ export const getServerSideProps: GetServerSideProps = async (
       'https://api-insta-zswvj.ondigitalocean.app/profile',
       requestOptions
     ).then((response) => response.json());
-    console.log( );
     if (typeof data == 'object') {
       error = true;
     } else if (data.image?.length == 0 && data?.image != undefined) {
