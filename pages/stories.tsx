@@ -14,7 +14,7 @@ import SvgComponent from './../components/SvgLoader';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = ({ data, error }): JSX.Element => {
+export const Stories = ({ data, error }): JSX.Element => {
   const router = useRouter();
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
@@ -43,7 +43,7 @@ export const Index = ({ data, error }): JSX.Element => {
     if (inputUrl) {
       setloading(true);
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/?url=${inputUrl}`).then(() => {
+      router.push(`/stories?username=${inputUrl}`).then(() => {
         setloading(false);
       });
     }
@@ -63,7 +63,7 @@ export const Index = ({ data, error }): JSX.Element => {
             onChange={handleSearch}
             type="search"
             name="search"
-            placeholder="Enter Reels/Video/IGTV Url ..."
+            placeholder="Enter Username Eg. wwe"
             className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
           />
           <button
@@ -88,7 +88,7 @@ export const Index = ({ data, error }): JSX.Element => {
         </div>
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
-            Please Enter Valid Url..
+            Please Enter Valid Usernames..
           </div>
         ) : (
           ''
@@ -96,7 +96,7 @@ export const Index = ({ data, error }): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
 
-        <DisplayPage data={data} type="mp4" />
+        <DisplayPage data={data} type="mp4"/>
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
@@ -149,10 +149,10 @@ export const getServerSideProps: GetServerSideProps = async (
   let data = null;
   let error = false;
   // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const url = context.query?.url;
-  if (url) {
+  const username = context.query?.username;
+  if (username) {
     const myHeaders = new Headers();
-    myHeaders.append('url', url as string);
+    myHeaders.append('username', username as string);
 
     const requestOptions: RequestInit = {
       method: 'GET',
@@ -161,9 +161,10 @@ export const getServerSideProps: GetServerSideProps = async (
     };
 
     data = await fetch(
-      'https://api-insta-zswvj.ondigitalocean.app/allinone',
+      'https://api-insta-zswvj.ondigitalocean.app/stories',
       requestOptions
     ).then((response) => response.json());
+    console.log(data);
     if (data.video?.length == 0 && data?.video != undefined) {
       error = true;
     } else if (data.image?.length == 0 && data?.image != undefined) {
@@ -178,4 +179,4 @@ export const getServerSideProps: GetServerSideProps = async (
   };
 };
 
-export default Index;
+export default Stories;

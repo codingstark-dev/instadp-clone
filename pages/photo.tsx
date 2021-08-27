@@ -14,7 +14,7 @@ import SvgComponent from './../components/SvgLoader';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = ({ data, error }): JSX.Element => {
+export const Photo = ({ data, error }): JSX.Element => {
   const router = useRouter();
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
@@ -43,7 +43,7 @@ export const Index = ({ data, error }): JSX.Element => {
     if (inputUrl) {
       setloading(true);
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/?url=${inputUrl}`).then(() => {
+      router.push(`/photo?url=${inputUrl}`).then(() => {
         setloading(false);
       });
     }
@@ -178,4 +178,4 @@ export const getServerSideProps: GetServerSideProps = async (
   };
 };
 
-export default Index;
+export default Photo;

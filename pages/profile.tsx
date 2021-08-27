@@ -8,17 +8,19 @@ import Layout from '../components/Layout';
 import { useState } from 'react';
 // import { PostType } from '../types/post';
 import DisplayPage from './../components/DisplayDlpage';
-import SvgComponent from './../components/SvgLoader';
+import Link from 'next/link';
+import SvgComponent from '../components/SvgLoader';
 
 // type IndexProps = {
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = ({ data, error }): JSX.Element => {
+export const Profile = ({ data, error }): JSX.Element => {
   const router = useRouter();
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
+
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
@@ -29,7 +31,7 @@ export const Index = ({ data, error }): JSX.Element => {
   };
 
   useEffect(() => {
-    if (data == 'link' || error == true) {
+    if (data == 'username' || error == true) {
       seterrorBol(true);
       setTimeout(() => {
         seterrorBol(false);
@@ -42,8 +44,9 @@ export const Index = ({ data, error }): JSX.Element => {
     // const result = RegExp(instaReg, 'g');
     if (inputUrl) {
       setloading(true);
+
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/?url=${inputUrl}`).then(() => {
+      router.push(`/profile?username=${inputUrl}`).then(() => {
         setloading(false);
       });
     }
@@ -63,8 +66,8 @@ export const Index = ({ data, error }): JSX.Element => {
             onChange={handleSearch}
             type="search"
             name="search"
-            placeholder="Enter Reels/Video/IGTV Url ..."
-            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
+            placeholder="Enter Username Eg. wwe"
+            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none "
           />
           <button
             type="submit"
@@ -88,15 +91,43 @@ export const Index = ({ data, error }): JSX.Element => {
         </div>
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
-            Please Enter Valid Url..
+            Please Enter Valid Username..
           </div>
         ) : (
           ''
         )}
         <br />
         {loading ? <SvgComponent /> : ''}
-
-        <DisplayPage data={data} type="mp4" />
+        {data?.image != undefined ? (
+          <div className="flex justify-center m-5 flex-wrap">
+            <img src={data.image} className=" rounded-lg"></img>
+            <Link
+              href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                data.image
+              )}&type=${'png'}&title=${Math.floor(
+                Math.random() * 100000000000
+              )}`}
+            >
+              <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-white"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="text-sm mr-1">Download Image</span>
+              </button>
+            </Link>
+          </div>
+        ) : (
+          ''
+        )}
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
@@ -149,10 +180,10 @@ export const getServerSideProps: GetServerSideProps = async (
   let data = null;
   let error = false;
   // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const url = context.query?.url;
-  if (url) {
+  const username = context.query?.username as string;
+  if (username) {
     const myHeaders = new Headers();
-    myHeaders.append('url', url as string);
+    myHeaders.append('username', username as string);
 
     const requestOptions: RequestInit = {
       method: 'GET',
@@ -161,10 +192,11 @@ export const getServerSideProps: GetServerSideProps = async (
     };
 
     data = await fetch(
-      'https://api-insta-zswvj.ondigitalocean.app/allinone',
+      'https://api-insta-zswvj.ondigitalocean.app/profile',
       requestOptions
     ).then((response) => response.json());
-    if (data.video?.length == 0 && data?.video != undefined) {
+    console.log( );
+    if (typeof data == 'object') {
       error = true;
     } else if (data.image?.length == 0 && data?.image != undefined) {
       error = true;
@@ -178,4 +210,4 @@ export const getServerSideProps: GetServerSideProps = async (
   };
 };
 
-export default Index;
+export default Profile;
