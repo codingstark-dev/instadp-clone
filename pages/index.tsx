@@ -5,7 +5,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 // import Link from 'next/link';
 import React, { ChangeEvent, useEffect } from 'react';
 import Layout from '../components/Layout';
-import { getAllPosts } from '../lib/api';
+// import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
 // import { PostType } from '../types/post';
 
@@ -38,10 +38,8 @@ export const Index = ({ data }): JSX.Element => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
-
     // if (inputUrl) {
     //   // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-
     //   router.push(`/?url=${inputUrl}`).then(() => {
     //     router.reload();
     //   });
@@ -203,7 +201,7 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   let data = null;
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
   const url = context.query?.url;
   if (url) {
     const myHeaders = new Headers();
@@ -222,7 +220,7 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 
   return {
-    props: { posts, data },
+    props: { data },
   };
 };
 
