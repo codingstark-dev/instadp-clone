@@ -1,5 +1,4 @@
 module.exports = {
-  exportTrailingSlash: true,
-
+  trailingSlash: true,
   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
 };
