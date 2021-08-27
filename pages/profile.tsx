@@ -26,14 +26,14 @@ export const Index = ({ data }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  // useEffect(() => {
-  //   if (data == 'link') {
-  //     seterrorBol(true);
-  //     setTimeout(() => {
-  //       seterrorBol(false); // count is 0 here
-  //     }, 5000);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data == 'link') {
+      seterrorBol(true);
+      setTimeout(() => {
+        seterrorBol(false); // count is 0 here
+      }, 5000);
+    }
+  }, [data]);
   const handleButton = () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';

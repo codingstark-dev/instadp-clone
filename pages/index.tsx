@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 
 // import Link from 'next/link';
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
@@ -16,7 +16,8 @@ import { useState } from 'react';
 export const Index = ({ data }): JSX.Element => {
   const router = useRouter();
   const [inputUrl, setinputUrl] = useState('');
-  const [errorBol, seterrorBol] = useState(false);
+  // const [errorBol, seterrorBol] = useState(false);
+  const errorBol = false
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
@@ -26,14 +27,14 @@ export const Index = ({ data }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  useEffect(() => {
-    if (data == 'link') {
-      seterrorBol(true);
-      setTimeout(() => {
-        seterrorBol(false); // count is 0 here
-      }, 5000);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data == 'link') {
+  //     seterrorBol(true);
+  //     setTimeout(() => {
+  //       seterrorBol(false); // count is 0 here
+  //     }, 5000);
+  //   }
+  // }, [data]);
   const handleButton = () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
