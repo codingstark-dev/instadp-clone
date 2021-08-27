@@ -14,12 +14,12 @@ import { useState } from 'react';
 // };
 // { posts }: IndexProps
 export const Index = ({ data }): JSX.Element => {
-  const router = useRouter();
-  const [inputUrl, setinputUrl] = useState('');
+  // const router = useRouter();
+  // const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
-    setinputUrl(event.target['value']);
+    // setinputUrl(event.target['value']);
 
     // console.log(inputUrl);
 
