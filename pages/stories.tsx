@@ -115,7 +115,7 @@ export const Stories = (): JSX.Element => {
         {loading ? <SvgComponent /> : ''}
 
         <DisplayPage data={dataUrl} type="mp4" />
-        <div className="prose">
+        <div className="prose font-poppins dark:prose-dark">
           <h2>Download Instagram story videos online</h2>
           <p>
             Instavideosave.net offers a free web-based tool which allows you to

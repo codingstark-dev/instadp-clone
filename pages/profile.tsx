@@ -144,7 +144,7 @@ export const Profile = (): JSX.Element => {
           ''
         )}
       </div>
-      <div className="prose font-poppins">
+      <div className="prose font-poppins dark:prose-dark">
         <h2>Download Instagram profile picture online</h2>
         <p>
           {' '}

@@ -6,7 +6,7 @@ const RouteNavBar = (): JSX.Element => {
 
   return (
     <nav>
-      <ul className=" flex lg:justify-center md:justify-center md:space-x-6 lg:space-x-8 space-x-4 font-semibold p-4 font-poppins lg:overflow-auto ">
+      <ul className=" flex lg:justify-center md:justify-center md:space-x-5 lg:space-x-8 space-x-4 font-semibold p-4 font-poppins lg:overflow-auto ">
         <li className="text-center text-sm ">
           <a
             href="/"
@@ -18,7 +18,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -44,7 +44,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -53,7 +53,7 @@ const RouteNavBar = (): JSX.Element => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 5.879 1.804M15 10a3 3 0 11-5 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
             <span>Profile</span>
@@ -71,7 +71,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -103,7 +103,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6  m-auto"
+              className="h-5 w-5  m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -129,7 +129,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -138,7 +138,7 @@ const RouteNavBar = (): JSX.Element => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-5-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
             <span>Photo</span>
@@ -155,7 +155,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -181,7 +181,7 @@ const RouteNavBar = (): JSX.Element => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 m-auto"
+              className="h-5 w-5 m-auto"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
