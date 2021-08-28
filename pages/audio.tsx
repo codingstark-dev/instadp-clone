@@ -1,8 +1,6 @@
 // import { format, parseISO } from 'date-fns';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 // import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
@@ -14,8 +12,7 @@ import SvgComponent from './../components/SvgLoader';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Audio = ({ data, error }): JSX.Element => {
-  const router = useRouter();
+export const Audio = (): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
@@ -46,7 +43,7 @@ export const Audio = ({ data, error }): JSX.Element => {
         redirect: 'follow',
       };
 
-      let data = await fetch(
+      const data = await fetch(
         'https://api-insta-zswvj.ondigitalocean.app/allinone',
         requestOptions
       ).then((response) => {
@@ -54,11 +51,11 @@ export const Audio = ({ data, error }): JSX.Element => {
         return response.json();
       });
       if (data.video?.length == 0 && data?.video != undefined) {
-        error = true;
+        seterrorBol(true);
       } else if (data.image?.length == 0 && data?.image != undefined) {
-        error = true;
+        seterrorBol(true);
       } else {
-        error = false;
+        seterrorBol(false);
       }
       setdataUrl(data);
     }
@@ -156,41 +153,6 @@ export const Audio = ({ data, error }): JSX.Element => {
       </div>
     </Layout>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  let data = null;
-  let error = false;
-  // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const url = context.query?.url;
-  if (url) {
-    const myHeaders = new Headers();
-    myHeaders.append('url', url as string);
-
-    const requestOptions: RequestInit = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    data = await fetch(
-      'https://api-insta-zswvj.ondigitalocean.app/allinone',
-      requestOptions
-    ).then((response) => response.json());
-    if (data.video?.length == 0 && data?.video != undefined) {
-      error = true;
-    } else if (data.image?.length == 0 && data?.image != undefined) {
-      error = true;
-    } else {
-      error = false;
-    }
-  }
-
-  return {
-    props: { data, error },
-  };
 };
 
 export default Audio;

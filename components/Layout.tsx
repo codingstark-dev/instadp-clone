@@ -12,7 +12,6 @@ type LayoutProps = {
   navbar?: boolean;
 };
 
-export const WEBSITE_HOST_URL = 'https://nextjs-typescript-mdx-blog.vercel.app';
 
 const Layout = ({ children, customMeta, navbar }: LayoutProps): JSX.Element => {
   return (

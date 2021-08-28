@@ -6,7 +6,6 @@ interface props {
   type:any
 }
 const DisplayPage = (data:props) => {
-  console.log(data);
   return (
     <div>
       {data.data?.video?.length != 0
@@ -54,7 +53,7 @@ const DisplayPage = (data:props) => {
         ? data.data?.image?.map((e, index) => {
             return (
               <div className="flex justify-center m-5 flex-wrap" key={index}>
-                <img src={e} className=" rounded-lg"></img>
+                <img src={e} className=" rounded-lg" key={e}></img>
                 <Link
                   href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
                     e

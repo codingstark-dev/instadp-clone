@@ -2,14 +2,14 @@ import React from 'react';
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="py-8 font-poppins shadow-inner ">
-      <div className="flex justify-around font-semibold" >
+    <footer className="py-8 font-poppins shadow-inner max-w-2xl m-auto  text-sm  ">
+      <div className="flex justify-evenly  font-semibold  " >
         <span>
           <a href="/">Home</a>
-        </span>
+        </span> |
         <span>
           <a href="/terms-and-conditions">Terms And Conditions</a>
-        </span>
+        </span> |
         <span>
           <a href="/privacy-policy">Privacy Policy</a>
         </span>

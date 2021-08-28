@@ -1,7 +1,6 @@
 // import { format, parseISO } from 'date-fns';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 // import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
@@ -42,7 +41,7 @@ export const igtv = (): JSX.Element => {
         redirect: 'follow',
       };
 
-      let data = await fetch(
+      const data = await fetch(
         'https://api-insta-zswvj.ondigitalocean.app/allinone',
         requestOptions
       ).then((response) => {
@@ -55,7 +54,6 @@ export const igtv = (): JSX.Element => {
         seterrorBol(false);
       }
       setdataUrl(data);
-      console.log(data);
 
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
       // router.replace(`/?url=${inputUrl}`).then(() => {

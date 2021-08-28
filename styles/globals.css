@@ -113,7 +113,10 @@ pre {
 .mdx-marker {
   @apply block -mx-4 px-4 bg-gray-100 dark:bg-gray-800 border-l-4 border-blue-500;
 }
-
+.prose li {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 /* width
 ::-webkit-scrollbar {
   width: 16px;

@@ -1,21 +1,19 @@
 // import { format, parseISO } from 'date-fns';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import Layout from '../components/Layout';
 // import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
 // import { PostType } from '../types/post';
 import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
+import { MetaProps } from '../types/layout';
 
 // type IndexProps = {
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Stories = ({ data, error }): JSX.Element => {
-  const router = useRouter();
+export const Stories = (): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
@@ -46,14 +44,13 @@ export const Stories = ({ data, error }): JSX.Element => {
         redirect: 'follow',
       };
 
-      let data = await fetch(
+      const data = await fetch(
         'https://api-insta-zswvj.ondigitalocean.app/stories',
         requestOptions
       ).then((response) => {
         setloading(false);
         return response.json();
       });
-      console.log(data)
 
       if (data.video?.length == 0 && data?.video != undefined) {
         seterrorBol(true);
@@ -65,15 +62,19 @@ export const Stories = ({ data, error }): JSX.Element => {
       setdataUrl(data);
     }
   };
-
+  const customMeta: MetaProps = {
+    title: `Download Instagram Stories Videos and View Anonymously`,
+    description: 'Download Instagram Stories Videos and View Anonymously',
+    type: 'article',
+  };
   return (
-    <Layout>
-      <div className="max-w-2xl m-auto text-center">
+    <Layout customMeta={customMeta}>
+      <div className="max-w-2xl m-auto">
         <h1 className="font-bold text-2xl mb-1 mt-2">
-          Download Instagram Reels
+          Instagram Story Downloader
         </h1>
         <p className="opacity-80">
-          Download Instagram Reels video with our Reels Downloader
+          Download Instagram stories online for free.
         </p>
         <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
           <input
@@ -105,7 +106,7 @@ export const Stories = ({ data, error }): JSX.Element => {
         </div>
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
-            Please Enter Valid Usernames.. or maybe server issue..  
+            Please Enter Valid Usernames.. or maybe server issue..
           </div>
         ) : (
           ''
@@ -114,85 +115,47 @@ export const Stories = ({ data, error }): JSX.Element => {
         {loading ? <SvgComponent /> : ''}
 
         <DisplayPage data={dataUrl} type="mp4" />
-        {/* <video controls className="m-1 rounded-lg">
-        <source src={data} />
-      </video> */}
-        {/* 
-
-      <h1>Home Page</h1>
-      <p>Next.js starter for your next blog or personal site. Built with:</p>
-      <ul className="list-disc pl-4 my-6">
-        <li>Next.js</li>
-        <li className="mt-2">Typescript</li>
-        <li className="mt-2">MDX</li>
-        <li className="mt-2">Tailwind CSS</li>
-      </ul>
-
-      <a
-        href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
-        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
-      >
-        Get the source code!
-      </a>
-
-      {posts.map((post) => (
-        <article key={post.slug} className="mt-12">
-          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {format(parseISO(post.date), 'MMMM dd, yyyy')}
-          </p>
-          <h1 className="mb-2 text-xl">
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
-                {post.title}
-              </a>
-            </Link>
-          </h1>
-          <p className="mb-3">{post.description}</p>
+        <div className="prose">
+          <h2>Download Instagram story videos online</h2>
           <p>
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a>Read More</a>
-            </Link>
+            Instavideosave.net offers a free web-based tool which allows you to
+            download Instagram stories, it's a quick and easy way to get your
+            Instagram stories downloaded offline to your device.
           </p>
-        </article>
-      ))} */}
+
+          <p>
+            Instagram is without a doubt one of the most popular social
+            networking platforms with over 1 billion monthly active users. If
+            you ever wanted to grab your instagram story and download all
+            instagram stories that you’ve shared with Instagram over the day,
+            you can do it right from your mobile, tablet, iPhone or iPad, or any
+            other device and it’s a lot easier than you think.
+          </p>
+          <h2>How to download Instagram stories?</h2>
+          <p>
+            We have mentioned steps below which will guide you to download
+            Instagram stories online to your mobile, tablet, pc or iOS:-
+          </p>
+          <ol>
+            <li>Open "Instavideosave.net".</li>
+            <li>Type Username or paste Story link in input field.</li>
+            <li>Click "Download" button,</li>
+            <li>Done, your story has been downloaded.</li>
+          </ol>
+          <h2>How to copy link to instagram profile?</h2>
+          <p>Steps to copy Instagram profile url:-</p>
+          <ol>
+            <li>Open user's Instagram profile.</li>
+            <li>Click on Three dots, located at top right corner.</li>
+            <li>Choose and click "copy profile URL" amoung other options.</li>
+            <li>Done, link has been copied.</li>
+          </ol>
+          <br />
+        </div>
       </div>
     </Layout>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  let data = null;
-  let error = false;
-  // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const username = context.query?.username;
-  if (username) {
-    const myHeaders = new Headers();
-    myHeaders.append('username', username as string);
-
-    const requestOptions: RequestInit = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    data = await fetch(
-      'https://api-insta-zswvj.ondigitalocean.app/stories',
-      requestOptions
-    ).then((response) => response.json());
-    if (data.video?.length == 0 && data?.video != undefined) {
-      error = true;
-    } else if (data.image?.length == 0 && data?.image != undefined) {
-      error = true;
-    } else {
-      error = false;
-    }
-  }
-
-  return {
-    props: { data, error },
-  };
-};
 
 export default Stories;
