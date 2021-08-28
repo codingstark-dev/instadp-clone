@@ -5,14 +5,15 @@ interface props {
   data: any;
   type:any
 }
-const DisplayPage = (data:props): JSX.Element => {
+const DisplayPage = (data:props) => {
+  console.log(data);
   return (
     <div>
       {data.data?.video?.length != 0
         ? data.data?.video?.map((e, index) => {
             return (
               <div className="flex flex-wrap justify-center m-5" key={index}>
-                <video controls className="rounded-lg">
+                <video controls className="rounded-lg" key={e}>
                   <source
                     src={
                       `https://bot.instasaved.net/proxy.php/?url=` +
@@ -40,7 +41,9 @@ const DisplayPage = (data:props): JSX.Element => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-sm mr-1">Download {data.type == 'mp3'?'Audio':'Video'}</span>
+                    <span className="text-sm mr-1">
+                      Download {data.type == 'mp3' ? 'Audio' : 'Video'}
+                    </span>
                   </button>
                 </Link>
               </div>

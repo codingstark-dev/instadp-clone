@@ -19,6 +19,7 @@ export const Profile = ({ data, error }): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
+  const [dataUrl, setdataUrl] = useState(null);
 
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
@@ -29,25 +30,38 @@ export const Profile = ({ data, error }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  useEffect(() => {
-    if (data == 'username' || error == true) {
-      seterrorBol(true);
-      setTimeout(() => {
-        seterrorBol(false);
-      }, 5000);
-    }
-  }, [data]);
-  const handleButton = () => {
+  const handleButton = async () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
     if (inputUrl) {
       setloading(true);
+      const myHeaders = new Headers();
+      myHeaders.append('username', inputUrl as string);
+
+      const requestOptions: RequestInit = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+     let data = await fetch(
+        'https://api-insta-zswvj.ondigitalocean.app/profile',
+        requestOptions
+      ).then((response) => {
+        setloading(false);
+
+        return response.json();
+      });
+      if (data.image?.length == 0 && data?.image == undefined) {
+        seterrorBol(true);
+      } else {
+        seterrorBol(false);
+      }
+
+      setdataUrl(data);
 
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/profile?username=${inputUrl}`).then(() => {
-        setloading(false);
-      });
     }
   };
 
@@ -97,12 +111,12 @@ export const Profile = ({ data, error }): JSX.Element => {
         )}
         <br />
         {loading ? <SvgComponent /> : ''}
-        {data?.image != undefined ? (
+        {dataUrl?.image != undefined ? (
           <div className="flex justify-center m-5 flex-wrap">
-            <img src={data.image} className=" rounded-lg"></img>
+            <img src={dataUrl.image} className=" rounded-lg"></img>
             <Link
               href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
-                data.image
+                dataUrl.image
               )}&type=${'png'}&title=${Math.floor(
                 Math.random() * 100000000000
               )}`}

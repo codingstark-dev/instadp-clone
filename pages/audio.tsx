@@ -19,6 +19,8 @@ export const Audio = ({ data, error }): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
+  const [dataUrl, setdataUrl] = useState('null');
+
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
@@ -28,24 +30,37 @@ export const Audio = ({ data, error }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  useEffect(() => {
-    if (data == 'link' || error == true) {
-      seterrorBol(true);
-      setTimeout(() => {
-        seterrorBol(false);
-      }, 5000);
-    }
-  }, [data]);
-  const handleButton = () => {
+  const handleButton = async () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
     if (inputUrl) {
       setloading(true);
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/audio?url=${inputUrl}`).then(() => {
+      const myHeaders = new Headers();
+      myHeaders.append('url', inputUrl as string);
+
+      const requestOptions: RequestInit = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+      let data = await fetch(
+        'https://api-insta-zswvj.ondigitalocean.app/allinone',
+        requestOptions
+      ).then((response) => {
         setloading(false);
+        return response.json();
       });
+      if (data.video?.length == 0 && data?.video != undefined) {
+        error = true;
+      } else if (data.image?.length == 0 && data?.image != undefined) {
+        error = true;
+      } else {
+        error = false;
+      }
+      setdataUrl(data);
     }
   };
 
@@ -63,7 +78,7 @@ export const Audio = ({ data, error }): JSX.Element => {
             onChange={handleSearch}
             type="search"
             name="search"
-            placeholder="Enter Reels/Video/IGTV Url ..."
+            placeholder="Enter Video Url To Convert Audio."
             className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
           />
           <button
@@ -96,7 +111,7 @@ export const Audio = ({ data, error }): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
 
-        <DisplayPage data={data} type="mp3" />
+        <DisplayPage data={dataUrl} type="mp3" />
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}

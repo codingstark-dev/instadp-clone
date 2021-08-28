@@ -6,8 +6,8 @@ const RouteNavBar = (): JSX.Element => {
 
   return (
     <nav>
-      <ul className=" flex lg:justify-center md:justify-center md:space-x-6 lg:space-x-8 space-x-4 font-semibold p-4 font-poppins overflow-x-scroll lg:overflow-auto ">
-        <li className="text-center ">
+      <ul className=" flex lg:justify-center md:justify-center md:space-x-6 lg:space-x-8 space-x-4 font-semibold p-4 font-poppins lg:overflow-auto ">
+        <li className="text-center text-sm ">
           <a
             href="/"
             className={
@@ -33,7 +33,7 @@ const RouteNavBar = (): JSX.Element => {
             <span>Reels</span>
           </a>
         </li>
-        <li className="text-center ">
+        <li className="text-center text-sm">
           <a
             href="/profile"
             className={
@@ -60,7 +60,7 @@ const RouteNavBar = (): JSX.Element => {
           </a>
         </li>
 
-        <li className="text-center ">
+        <li className="text-center text-sm">
           <a
             href="/stories"
             className={
@@ -92,7 +92,7 @@ const RouteNavBar = (): JSX.Element => {
             <span>Stories</span>
           </a>
         </li>
-        <li className="text-center">
+        <li className="text-center text-sm">
           <a
             href="/audio"
             className={
@@ -118,7 +118,7 @@ const RouteNavBar = (): JSX.Element => {
             <span>Audio</span>
           </a>
         </li>
-        <li className="text-center">
+        <li className="text-center text-sm">
           <a
             href="/photo"
             className={
@@ -144,7 +144,7 @@ const RouteNavBar = (): JSX.Element => {
             <span>Photo</span>
           </a>
         </li>
-        <li className="text-center">
+        <li className="text-center text-sm">
           <a
             href="/video"
             className={
@@ -170,7 +170,7 @@ const RouteNavBar = (): JSX.Element => {
             <span>Video</span>
           </a>
         </li>
-        <li className="text-center ">
+        <li className="text-center text-sm">
           <a
             href="/igtv"
             className={

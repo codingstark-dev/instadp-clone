@@ -1,6 +1,5 @@
 // import { format, parseISO } from 'date-fns';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 
 import React, { ChangeEvent, useEffect } from 'react';
 import Layout from '../components/Layout';
@@ -14,11 +13,11 @@ import SvgComponent from './../components/SvgLoader';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Video = ({ data, error }): JSX.Element => {
-  const router = useRouter();
+export const igtv = (): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
+  const [dataUrl, setdataUrl] = useState('null');
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
@@ -28,24 +27,40 @@ export const Video = ({ data, error }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  useEffect(() => {
-    if (data == 'link' || error == true) {
-      seterrorBol(true);
-      setTimeout(() => {
-        seterrorBol(false);
-      }, 5000);
-    }
-  }, [data]);
-  const handleButton = () => {
+  const handleButton = async () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
     if (inputUrl) {
       setloading(true);
-      // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/igtv?url=${inputUrl}`).then(() => {
+      const myHeaders = new Headers();
+      myHeaders.append('url', inputUrl as string);
+
+      const requestOptions: RequestInit = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+      let data = await fetch(
+        'https://api-insta-zswvj.ondigitalocean.app/allinone',
+        requestOptions
+      ).then((response) => {
         setloading(false);
+        return response.json();
       });
+      if (data == 'link' || data.image?.length == 0) {
+        seterrorBol(true);
+      } else {
+        seterrorBol(false);
+      }
+      setdataUrl(data);
+      console.log(data);
+
+      // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
+      // router.replace(`/?url=${inputUrl}`).then(() => {
+      //   setloading(false);
+      // });
     }
   };
 
@@ -58,13 +73,13 @@ export const Video = ({ data, error }): JSX.Element => {
         <p className="opacity-80">
           Download Instagram Reels video with our Reels Downloader
         </p>
-        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
+        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
             type="search"
             name="search"
             placeholder="Enter Reels/Video/IGTV Url ..."
-            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
+            className="bg-transparent w-[22em] lg:w-[40em] px-3 h-14 pr-10 rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
@@ -95,8 +110,8 @@ export const Video = ({ data, error }): JSX.Element => {
         )}
         <br />
         {loading ? <SvgComponent /> : ''}
+        <DisplayPage data={dataUrl} type="mp4" />
 
-        <DisplayPage data={data} type="mp4" />
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
@@ -143,39 +158,4 @@ export const Video = ({ data, error }): JSX.Element => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  let data = null;
-  let error = false;
-  // const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-  const url = context.query?.url;
-  if (url) {
-    const myHeaders = new Headers();
-    myHeaders.append('url', url as string);
-
-    const requestOptions: RequestInit = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    data = await fetch(
-      'https://api-insta-zswvj.ondigitalocean.app/allinone',
-      requestOptions
-    ).then((response) => response.json());
-    if (data.video?.length == 0 && data?.video != undefined) {
-      error = true;
-    } else if (data.image?.length == 0 && data?.image != undefined) {
-      error = true;
-    } else {
-      error = false;
-    }
-  }
-
-  return {
-    props: { data, error },
-  };
-};
-
-export default Video;
+export default igtv;

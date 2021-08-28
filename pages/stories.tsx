@@ -19,6 +19,8 @@ export const Stories = ({ data, error }): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
+  const [dataUrl, setdataUrl] = useState(null);
+
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
     setinputUrl(event.target['value']);
@@ -28,24 +30,39 @@ export const Stories = ({ data, error }): JSX.Element => {
     //  `https://bot.instasaved.net/proxy.php/?url=`;
   };
 
-  useEffect(() => {
-    if (data == 'link' || error == true) {
-      seterrorBol(true);
-      setTimeout(() => {
-        seterrorBol(false);
-      }, 5000);
-    }
-  }, [data]);
-  const handleButton = () => {
+  const handleButton = async () => {
     // const instaReg =
     //   '(https?://(?:www.)?instagram.com/p/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/reel/([^/?#&]+)).*|(https?://(?:www.)?instagram.com/tv/([^/?#&]+)).*';
     // const result = RegExp(instaReg, 'g');
     if (inputUrl) {
       setloading(true);
       // console.log(result.test('https://www.instagram.com/tv/B_2J3OkAHzJ/'));
-      router.push(`/stories?username=${inputUrl}`).then(() => {
+      const myHeaders = new Headers();
+      myHeaders.append('username', inputUrl as string);
+
+      const requestOptions: RequestInit = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+
+      let data = await fetch(
+        'https://api-insta-zswvj.ondigitalocean.app/stories',
+        requestOptions
+      ).then((response) => {
         setloading(false);
+        return response.json();
       });
+      console.log(data)
+
+      if (data.video?.length == 0 && data?.video != undefined) {
+        seterrorBol(true);
+      } else if (data.image?.length == 0 && data?.image != undefined) {
+        seterrorBol(true);
+      } else {
+        seterrorBol(false);
+      }
+      setdataUrl(data);
     }
   };
 
@@ -88,7 +105,7 @@ export const Stories = ({ data, error }): JSX.Element => {
         </div>
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
-            Please Enter Valid Usernames..
+            Please Enter Valid Usernames.. or maybe server issue..  
           </div>
         ) : (
           ''
@@ -96,7 +113,7 @@ export const Stories = ({ data, error }): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
 
-        <DisplayPage data={data} type="mp4"/>
+        <DisplayPage data={dataUrl} type="mp4" />
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
