@@ -1,11 +1,11 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
-import { PAGE_PATH, POSTS_PATH } from '../utils/mdxUtils';
+import { PAGE_PATH } from '../utils/mdxUtils';
 
-export function getPostSlugs(): string[] {
-  return fs.readdirSync(POSTS_PATH);
-}
+// export function getPostSlugs(): string[] {
+//   return fs.readdirSync(POSTS_PATH);
+// }
 
 type PostItems = {
   [key: string]: string;
@@ -35,11 +35,11 @@ export function getPostBySlug(slug: string, fields: string[] = []): PostItems {
   return items;
 }
 
-export function getAllPosts(fields: string[] = []): PostItems[] {
-  const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug, fields))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
-}
+// export function getAllPosts(fields: string[] = []): PostItems[] {
+//   const slugs = getPostSlugs();
+//   const posts = slugs
+//     .map((slug) => getPostBySlug(slug, fields))
+//     // sort posts by date in descending order
+//     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+//   return posts;
+// }

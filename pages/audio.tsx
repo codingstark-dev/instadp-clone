@@ -107,7 +107,7 @@ export const Audio = (): JSX.Element => {
         <br />
         {loading == true ? <SvgComponent /> : ''}
        
-        {dataUrl.video != undefined 
+        {dataUrl != undefined 
           ? dataUrl.video?.map((e, index) => {
               return (
                 <div className="flex flex-wrap justify-center m-5" key={index}>
