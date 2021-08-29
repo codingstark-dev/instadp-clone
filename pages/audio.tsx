@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 // import { getAllPosts } from '../lib/api';
 import { useState } from 'react';
 // import { PostType } from '../types/post';
-import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
+import Link from 'next/link';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -16,7 +16,7 @@ export const Audio = (): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
-  const [dataUrl, setdataUrl] = useState('null');
+  const [dataUrl, setdataUrl] = useState(undefined);
 
   const handleSearch = (event: ChangeEvent) => {
     event.preventDefault();
@@ -50,9 +50,7 @@ export const Audio = (): JSX.Element => {
         setloading(false);
         return response.json();
       });
-      if (data.video?.length == 0 && data?.video != undefined) {
-        seterrorBol(true);
-      } else if (data.image?.length == 0 && data?.image != undefined) {
+      if (data == 'link' || data.image?.length == 0) {
         seterrorBol(true);
       } else {
         seterrorBol(false);
@@ -70,18 +68,18 @@ export const Audio = (): JSX.Element => {
         <p className="opacity-80">
           Download Instagram Reels video with our Reels Downloader
         </p>
-        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
+        <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
             type="search"
             name="search"
             placeholder="Enter Video Url To Convert Audio."
-            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
+            className="bg-transparent w-full pl-3 h-14  rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
             onClick={handleButton}
-            className="absolute right-0 top-0 mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +96,7 @@ export const Audio = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
+
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Url..
@@ -106,9 +105,51 @@ export const Audio = (): JSX.Element => {
           ''
         )}
         <br />
-        {loading ? <SvgComponent /> : ''}
-
-        <DisplayPage data={dataUrl} type="mp3" />
+        {loading == true ? <SvgComponent /> : ''}
+       
+        {dataUrl.video != undefined 
+          ? dataUrl.video?.map((e, index) => {
+              return (
+                <div className="flex flex-wrap justify-center m-5" key={index}>
+                  <audio controls key={e}>
+                    <source
+                      src={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                        e
+                      )}&type=${'mp3'}&title=${Math.floor(
+                        Math.random() * 100000000000
+                      )}`}
+                      type="audio/mp3"
+                    />
+                  </audio>
+                  <Link
+                    href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                      e
+                    )}&type=${'mp3'}&title=${Math.floor(
+                      Math.random() * 100000000000
+                    )}`}
+                  >
+                    <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-white"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-sm mr-1">
+                        Download Audio
+                      </span>
+                    </button>
+                  </Link>
+                </div>
+              );
+            })
+          : ''}
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}

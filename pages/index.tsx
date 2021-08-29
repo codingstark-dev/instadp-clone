@@ -62,11 +62,11 @@ export const Index = (): JSX.Element => {
       // });
     }
   };
- const customMeta: MetaProps = {
-   title: `Instagram Reels Downloader - Save Reels Videos Online`,
-   description: ' Instagram Reels Downloader - Save Reels Videos Online',
-   type: 'article',
- };
+  const customMeta: MetaProps = {
+    title: `Instagram Reels Downloader - Save Reels Videos Online`,
+    description: ' Instagram Reels Downloader - Save Reels Videos Online',
+    type: 'article',
+  };
   return (
     <Layout customMeta={customMeta}>
       <div className="max-w-2xl m-auto ">
@@ -74,18 +74,18 @@ export const Index = (): JSX.Element => {
           Instagram Reels Downloader
         </h1>
         <p className="opacity-80">Download Instagram videos online for free.</p>
-        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
+        <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
             type="search"
             name="search"
             placeholder="Enter Reels/Video/IGTV Url ..."
-            className="bg-transparent sm:w-[18em] w-[20em]  lg:w-[40em] px-3 h-14 pr-10 rounded-full text-sm focus:outline-none text-black "
+            className="bg-transparent w-full pl-3 h-14  rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
             onClick={handleButton}
-            className="absolute right-0 top-0 mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,6 +102,7 @@ export const Index = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
+
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Url..
@@ -226,7 +227,7 @@ export const Index = (): JSX.Element => {
             512 and the Digital Millennium Copyright Act (DMCA). It is our
             policy to respond to any infringement notices and take appropriate
             actions. If your copyrighted material has been posted on the site
-            and you want this material removed, Contact us.
+            and you want this material removed
           </p>
         </div>
       </div>

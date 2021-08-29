@@ -51,10 +51,11 @@ export const Stories = (): JSX.Element => {
         setloading(false);
         return response.json();
       });
-
-      if (data.video?.length == 0 && data?.video != undefined) {
+      if (data.video?.length == 0 && data?.image.length == 0) {
         seterrorBol(true);
-      } else if (data.image?.length == 0 && data?.image != undefined) {
+      }else if (data.video?.length == 0 && data?.video == undefined) {
+        seterrorBol(true);
+      } else if (data.image?.length == 0 && data?.image == undefined) {
         seterrorBol(true);
       } else {
         seterrorBol(false);
@@ -76,18 +77,18 @@ export const Stories = (): JSX.Element => {
         <p className="opacity-80">
           Download Instagram stories online for free.
         </p>
-        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
+        <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
             type="search"
             name="search"
-            placeholder="Enter Username Eg. wwe"
-            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none text-black"
+            placeholder="Enter Username eg. wwe"
+            className="bg-transparent  w-full pl-3 h-14  rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
             onClick={handleButton}
-            className="absolute right-0 top-0 mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +105,7 @@ export const Stories = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
+
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Usernames.. or maybe server issue..
@@ -155,6 +157,5 @@ export const Stories = (): JSX.Element => {
     </Layout>
   );
 };
-
 
 export default Stories;

@@ -12,25 +12,25 @@ type LayoutProps = {
   navbar?: boolean;
 };
 
-
 const Layout = ({ children, customMeta, navbar }: LayoutProps): JSX.Element => {
   return (
     <>
       <Head customMeta={customMeta} />
       <header>
         <div className="mx-auto font-poppins">
-          <div className="flex items-center justify-between py-4 shadow-sm px-4 max-w-7xl m-auto ">
+          <div className="flex items-center justify-between py-2 px-2 max-w-7xl m-auto ">
             <Navigation />
             <ThemeSwitch />
           </div>
+          <hr />
         </div>
       </header>
       {navbar ? '' : <RouteNavBar />}
-
+      <hr />
       <main className="font-poppins">
         <div className="max-w-5xl px-3 mx-auto">{children}</div>
       </main>
-   <Footer />
+      <Footer />
     </>
   );
 };

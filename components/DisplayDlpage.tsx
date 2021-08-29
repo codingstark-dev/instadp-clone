@@ -10,6 +10,7 @@ const DisplayPage = (data:props) => {
     <div>
       {data.data?.video?.length != 0
         ? data.data?.video?.map((e, index) => {
+         
             return (
               <div className="flex flex-wrap justify-center m-5" key={index}>
                 <video controls className="rounded-lg" key={e}>

@@ -76,18 +76,18 @@ export const Profile = (): JSX.Element => {
         <p className="opacity-80">
           Download Instagram profile (dp) online for free.
         </p>
-        <div className="relative text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200">
+        <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
             type="search"
             name="search"
-            placeholder="Enter Username Eg. wwe"
-            className="bg-transparent w-full h-14 px-3 pr-10 rounded-full text-sm focus:outline-none "
+            placeholder="Enter Username eg. wwe"
+            className="bg-transparent w-full pl-3 h-14  rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
             onClick={handleButton}
-            className="absolute right-0 top-0 mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +104,7 @@ export const Profile = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
+
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Username..
@@ -143,7 +144,7 @@ export const Profile = (): JSX.Element => {
         ) : (
           ''
         )}
-      </div>
+      
       <div className="prose font-poppins dark:prose-dark">
         <h2>Download Instagram profile picture online</h2>
         <p>
@@ -171,7 +172,7 @@ export const Profile = (): JSX.Element => {
           <li>Click "Download" button,</li>
           <li>Done, your profile picture has been downloaded.</li>
         </ol>
-      </div>
+      </div></div>
     </Layout>
   );
 };

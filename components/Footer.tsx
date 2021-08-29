@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = (): JSX.Element => {
   return (
-    <div>
+    <div className="max-w-2xl m-auto">
       <div className="bg-blue-500 text-white rounded-lg p-2 m-3">
         <p>
           <b>Instavideosave.com</b> is not affiliated with Instagram™ and not we
@@ -10,7 +10,8 @@ const Footer = (): JSX.Element => {
           through Instagram CDN and belongs to their respective owners.
         </p>
       </div>
-      <footer className="py-8 font-poppins shadow-inner max-w-2xl m-auto  text-sm  ">
+      <hr />
+      <footer className="py-8 font-poppins  m-auto  text-sm  ">
         <div className="flex justify-evenly  font-semibold  ">
           <span>
             <a href="/">Home</a>
