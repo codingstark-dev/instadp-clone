@@ -150,7 +150,6 @@ export const Stories = (): JSX.Element => {
             <li>Choose and click "copy profile URL" amoung other options.</li>
             <li>Done, link has been copied.</li>
           </ol>
-          <br />
         </div>
       </div>
     </Layout>

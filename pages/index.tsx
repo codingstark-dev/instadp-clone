@@ -80,7 +80,7 @@ export const Index = (): JSX.Element => {
             type="search"
             name="search"
             placeholder="Enter Reels/Video/IGTV Url ..."
-            className="bg-transparent w-[22em] lg:w-[40em] px-3 h-14 pr-10 rounded-full text-sm focus:outline-none text-black "
+            className="bg-transparent sm:w-[18em] w-[20em]  lg:w-[40em] px-3 h-14 pr-10 rounded-full text-sm focus:outline-none text-black "
           />
           <button
             type="submit"
@@ -228,15 +228,6 @@ export const Index = (): JSX.Element => {
             actions. If your copyrighted material has been posted on the site
             and you want this material removed, Contact us.
           </p>
-          <div className="bg-blue-500 text-white rounded-lg p-2">
-            <p>
-              <b>Instavideosave.com</b> is not affiliated with Instagram™ and
-              not we host any of media on our servers all the media content is
-              delivered through Instagram CDN and belongs to their respective
-              owners.
-            </p>
-          </div>
-          <br />
         </div>
       </div>
     </Layout>

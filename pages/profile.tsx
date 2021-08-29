@@ -171,7 +171,6 @@ export const Profile = (): JSX.Element => {
           <li>Click "Download" button,</li>
           <li>Done, your profile picture has been downloaded.</li>
         </ol>
-        <br />
       </div>
     </Layout>
   );

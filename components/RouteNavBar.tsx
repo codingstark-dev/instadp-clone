@@ -6,7 +6,7 @@ const RouteNavBar = (): JSX.Element => {
 
   return (
     <nav>
-      <ul className=" flex lg:justify-center md:justify-center md:space-x-5 lg:space-x-8 space-x-4 font-semibold p-4 font-poppins lg:overflow-auto ">
+      <ul className=" flex justify-center md:justify-center md:space-x-5 lg:space-x-8 space-x-2 font-semibold py-3 font-poppins lg:overflow-auto ">
         <li className="text-center text-sm ">
           <a
             href="/"
