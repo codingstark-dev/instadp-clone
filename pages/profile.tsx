@@ -44,7 +44,7 @@ export const Profile = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://api-insta-zswvj.ondigitalocean.app/profile',
+        'https://dummyapisds.herokuapp.com/profile',
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -118,7 +118,7 @@ export const Profile = (): JSX.Element => {
           <div className="flex justify-center m-5 flex-wrap">
             <img src={dataUrl.image} className=" rounded-lg"></img>
             <Link
-              href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+              href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
                 dataUrl.image
               )}&type=${'png'}&title=${Math.floor(
                 Math.random() * 100000000000

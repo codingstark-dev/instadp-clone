@@ -44,7 +44,7 @@ export const Audio = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://api-insta-zswvj.ondigitalocean.app/allinone',
+        'https://dummyapisds.herokuapp.com/allinone',
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -113,7 +113,7 @@ export const Audio = (): JSX.Element => {
                 <div className="flex flex-wrap justify-center m-5" key={index}>
                   <audio controls key={e}>
                     <source
-                      src={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                      src={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
                         e
                       )}&type=${'mp3'}&title=${Math.floor(
                         Math.random() * 100000000000
@@ -122,7 +122,7 @@ export const Audio = (): JSX.Element => {
                     />
                   </audio>
                   <Link
-                    href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                    href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
                       e
                     )}&type=${'mp3'}&title=${Math.floor(
                       Math.random() * 100000000000

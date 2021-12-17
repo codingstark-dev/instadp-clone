@@ -43,7 +43,7 @@ export const Index = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://api-insta-zswvj.ondigitalocean.app/allinone',
+        'https://dummyapisds.herokuapp.com/allinone',
         requestOptions
       ).then((response) => {
         setloading(false);

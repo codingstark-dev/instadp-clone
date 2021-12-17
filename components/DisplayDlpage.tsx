@@ -3,26 +3,26 @@ import React from 'react';
 
 interface props {
   data: any;
-  type:any
+  type: any;
 }
-const DisplayPage = (data:props) => {
+const DisplayPage = (data: props) => {
   return (
     <div>
       {data.data?.video?.length != 0
         ? data.data?.video?.map((e, index) => {
-         
             return (
               <div className="flex flex-wrap justify-center m-5" key={index}>
                 <video controls className="rounded-lg" key={e}>
                   <source
-                    src={
-                      `https://bot.instasaved.net/proxy.php/?url=` +
-                      encodeURIComponent(e)
-                    }
+                    src={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                      e
+                    )}&type=${'png'}&title=${Math.floor(
+                      Math.random() * 100000000000
+                    )}`}
                   />
                 </video>
                 <Link
-                  href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                  href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
                     e
                   )}&type=${data.type}&title=${Math.floor(
                     Math.random() * 100000000000
@@ -56,7 +56,7 @@ const DisplayPage = (data:props) => {
               <div className="flex justify-center m-5 flex-wrap" key={index}>
                 <img src={e} className=" rounded-lg" key={e}></img>
                 <Link
-                  href={`https://api-insta-zswvj.ondigitalocean.app/dl?url=${encodeURIComponent(
+                  href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
                     e
                   )}&type=${'png'}&title=${Math.floor(
                     Math.random() * 100000000000

@@ -45,7 +45,7 @@ export const Stories = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://api-insta-zswvj.ondigitalocean.app/stories',
+        'https://dummyapisds.herokuapp.com/stories',
         requestOptions
       ).then((response) => {
         setloading(false);
