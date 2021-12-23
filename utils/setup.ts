@@ -30,6 +30,10 @@ let SiteDetails = {
     "igtv": {
         'description': 'Example description',
         "title": ""
+    },
+     "reels": {
+        'description': 'Example description',
+        "title": ""
     }
 
 }

@@ -14,7 +14,7 @@ import { SiteDetails } from '../utils/setup';
 //   posts: PostType[];
 // };
 // { posts }: IndexProps
-export const Index = (): JSX.Element => {
+export const Reels = (): JSX.Element => {
   const [inputUrl, setinputUrl] = useState('');
   const [errorBol, seterrorBol] = useState(false);
   const [loading, setloading] = useState(false);
@@ -64,8 +64,8 @@ export const Index = (): JSX.Element => {
     }
   };
   const customMeta: MetaProps = {
-    title: SiteDetails.title,
-    description: SiteDetails.description,
+    title: SiteDetails.reels.title,
+    description: SiteDetails.reels.description,
   };
   return (
     <Layout customMeta={customMeta}>
@@ -115,7 +115,6 @@ export const Index = (): JSX.Element => {
 
         {/* add html content here!!! */}
         <div className="nuxt-content prose font-poppins dark:prose-dark">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ullam non atque maxime nesciunt eveniet quam dolor omnis molestiae qui reprehenderit harum a, recusandae architecto odio ea. Ducimus, at molestias.
           <h2 id="instagram-reels-video-download-online---reels-video-downloader">
             <a
               aria-hidden="true"
@@ -237,4 +236,4 @@ export const Index = (): JSX.Element => {
   );
 };
 
-export default Index;
+export default Reels;

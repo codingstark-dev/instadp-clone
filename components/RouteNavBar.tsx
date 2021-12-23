@@ -8,10 +8,10 @@ const RouteNavBar = (): JSX.Element => {
     <nav>
       <ul className=" flex justify-center md:justify-center md:space-x-5 lg:space-x-8 space-x-2 font-semibold py-3 font-poppins lg:overflow-auto ">
         <li className="text-center text-sm ">
-          <Link href="/">
+          <Link href="/reels">
             <a
               className={
-                router.pathname == '/'
+                router.pathname == '/reels'
                   ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
