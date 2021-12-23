@@ -115,7 +115,7 @@ export const Stories = (): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
         <DisplayPage data={dataUrl} type="mp4" />
-        // add html content here!!!
+        {/* // add html content here!!! */}
         <div className="prose font-poppins dark:prose-dark">
           <h2>Download Instagram story videos online</h2>
           <p>
