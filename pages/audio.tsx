@@ -7,6 +7,8 @@ import { useState } from 'react';
 // import { PostType } from '../types/post';
 import SvgComponent from './../components/SvgLoader';
 import Link from 'next/link';
+import { SiteDetails } from '../utils/setup';
+import { MetaProps } from '../types/layout';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -44,7 +46,7 @@ export const Audio = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://dummyapisds.herokuapp.com/allinone',
+        `${SiteDetails.api}/allinone`,
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -58,9 +60,12 @@ export const Audio = (): JSX.Element => {
       setdataUrl(data);
     }
   };
-
+const customMeta: MetaProps = {
+  title: SiteDetails.audio.title,
+  description: SiteDetails.audio.description,
+};
   return (
-    <Layout>
+    <Layout customMeta={customMeta} >
       <div className="max-w-2xl m-auto text-center">
         <h1 className="font-bold text-2xl mb-1 mt-2">
           Download Instagram Reels
@@ -113,7 +118,7 @@ export const Audio = (): JSX.Element => {
                 <div className="flex flex-wrap justify-center m-5" key={index}>
                   <audio controls key={e}>
                     <source
-                      src={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                      src={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                         e
                       )}&type=${'mp3'}&title=${Math.floor(
                         Math.random() * 100000000000
@@ -122,7 +127,7 @@ export const Audio = (): JSX.Element => {
                     />
                   </audio>
                   <Link
-                    href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                    href={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                       e
                     )}&type=${'mp3'}&title=${Math.floor(
                       Math.random() * 100000000000
@@ -141,9 +146,7 @@ export const Audio = (): JSX.Element => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="text-sm mr-1">
-                        Download Audio
-                      </span>
+                      <span className="text-sm mr-1">Download Audio</span>
                     </button>
                   </Link>
                 </div>

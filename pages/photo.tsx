@@ -7,6 +7,8 @@ import { useState } from 'react';
 // import { PostType } from '../types/post';
 import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
+import { SiteDetails } from '../utils/setup';
+import { MetaProps } from '../types/layout';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -42,7 +44,7 @@ export const Photo = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://dummyapisds.herokuapp.com/allinone',
+        `${SiteDetails.api}/allinone`,
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -61,9 +63,12 @@ export const Photo = (): JSX.Element => {
       // });
     }
   };
-
+const customMeta: MetaProps = {
+  title: SiteDetails.photo.title,
+  description: SiteDetails.photo.description,
+};
   return (
-    <Layout>
+    <Layout customMeta={customMeta}>
       <div className="max-w-2xl m-auto text-center">
         <h1 className="font-bold text-2xl mb-1 mt-2">
           Download Instagram Reels

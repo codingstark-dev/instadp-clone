@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { SiteDetails } from '../utils/setup';
 
 interface props {
   data: any;
@@ -14,7 +15,7 @@ const DisplayPage = (data: props) => {
               <div className="flex flex-wrap justify-center m-5" key={index}>
                 <video controls className="rounded-lg" key={e}>
                   <source
-                    src={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                    src={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                       e
                     )}&type=${'png'}&title=${Math.floor(
                       Math.random() * 100000000000
@@ -22,7 +23,7 @@ const DisplayPage = (data: props) => {
                   />
                 </video>
                 <Link
-                  href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                  href={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                     e
                   )}&type=${data.type}&title=${Math.floor(
                     Math.random() * 100000000000
@@ -56,7 +57,7 @@ const DisplayPage = (data: props) => {
               <div className="flex justify-center m-5 flex-wrap" key={index}>
                 <img src={e} className=" rounded-lg" key={e}></img>
                 <Link
-                  href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+                  href={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                     e
                   )}&type=${'png'}&title=${Math.floor(
                     Math.random() * 100000000000

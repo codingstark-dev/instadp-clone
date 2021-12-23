@@ -8,6 +8,7 @@ import { useState } from 'react';
 import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
 import { MetaProps } from '../types/layout';
+import { SiteDetails } from '../utils/setup';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -43,7 +44,7 @@ export const Index = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://dummyapisds.herokuapp.com/allinone',
+        `${SiteDetails.api}/allinone`,
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -63,9 +64,8 @@ export const Index = (): JSX.Element => {
     }
   };
   const customMeta: MetaProps = {
-    title: `Instagram Reels Downloader - Save Reels Videos Online`,
-    description: ' Instagram Reels Downloader - Save Reels Videos Online',
-    type: 'article',
+    title: SiteDetails.title,
+    description: SiteDetails.description,
   };
   return (
     <Layout customMeta={customMeta}>
@@ -78,7 +78,7 @@ export const Index = (): JSX.Element => {
           <input
             onChange={handleSearch}
             type="search"
-            name="search"
+            // name="search"
             placeholder="Enter Reels/Video/IGTV Url ..."
             className="bg-transparent w-full pl-3 h-14  rounded-full text-sm focus:outline-none text-black "
           />
@@ -102,7 +102,6 @@ export const Index = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
-
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Url..
@@ -113,6 +112,8 @@ export const Index = (): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
         <DisplayPage data={dataUrl} type="mp4" />
+        
+        // add html content here!!!
         <div className="nuxt-content prose font-poppins dark:prose-dark">
           <h2 id="instagram-reels-video-download-online---reels-video-downloader">
             <a
@@ -125,8 +126,8 @@ export const Index = (): JSX.Element => {
             Instagram reels video download online - reels video downloader
           </h2>
           <p>
-            Instavideosave.net is an online free and fast tool which helps you
-            to download instagram reels video or to save reels video to your
+            insta.net is an online free and fast tool which helps you to
+            download instagram reels video or to save reels video to your
             device. You can save any reels videos in computer or phone gallery
             and view them offline anytime.
           </p>
@@ -174,7 +175,7 @@ export const Index = (): JSX.Element => {
             benefits using this tool. It is a super-fast reels video downloading
             tool that takes less time to download Video from instagram. You need
             to copy the link to your favorite instagram reels video and paste
-            that copied Link into the instavideosave input box for downloading.
+            that copied Link into the insta input box for downloading.
           </p>
           <p>
             <strong>Steps:</strong>
@@ -219,15 +220,15 @@ export const Index = (): JSX.Element => {
             Downloading Reels videos is just a simple stuff, but when i comes to
             download private instagram reels this is little challenging.
             Instagram doesn't allow everyone to access private videos, photos or
-            reels thatswhy instavideosave tool cannot able to extract or
-            download private reels videos.
+            reels thatswhy insta tool cannot able to extract or download private
+            reels videos.
           </p>
           <p>
-            <strong>DMCA:</strong> Instavideosave.net complies with 17 U.S.C. *
-            512 and the Digital Millennium Copyright Act (DMCA). It is our
-            policy to respond to any infringement notices and take appropriate
-            actions. If your copyrighted material has been posted on the site
-            and you want this material removed
+            <strong>DMCA:</strong> insta.net complies with 17 U.S.C. * 512 and
+            the Digital Millennium Copyright Act (DMCA). It is our policy to
+            respond to any infringement notices and take appropriate actions. If
+            your copyrighted material has been posted on the site and you want
+            this material removed
           </p>
         </div>
       </div>

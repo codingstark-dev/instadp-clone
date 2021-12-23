@@ -15,7 +15,7 @@ import Layout from '../components/Layout';
 import { MetaProps } from '../types/layout';
 import { PostType } from '../types/post';
 import { pageFilePaths, PAGE_PATH } from '../utils/mdxUtils';
-export const WEBSITE_HOST_URL = 'https://instavideosave.net/';
+export const WEBSITE_HOST_URL = 'https://insta.net/';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -38,7 +38,7 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
     description: frontMatter.description,
     image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
     date: frontMatter.date,
-    type: 'article',
+    
   };
   return (
     <Layout customMeta={customMeta} navbar={true}>

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import SvgComponent from '../components/SvgLoader';
 import { MetaProps } from '../types/layout';
+import { SiteDetails } from '../utils/setup';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -44,7 +45,7 @@ export const Profile = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://dummyapisds.herokuapp.com/profile',
+        `${SiteDetails.api}/profile`,
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -63,9 +64,9 @@ export const Profile = (): JSX.Element => {
     }
   };
  const customMeta: MetaProps = {
-   title: `Instagram Profile Picture Downloader & Instadp Viewer`,
-   description: 'Instagram Profile Picture Downloader & Instadp Viewer',
-   type: 'article',
+   title: SiteDetails.profile.title,
+   description: SiteDetails.profile.description,
+   
  };
   return (
     <Layout customMeta={customMeta}>
@@ -115,10 +116,10 @@ export const Profile = (): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
         {dataUrl?.image != undefined ? (
-          <div className="flex justify-center m-5 flex-wrap">
-            <img src={dataUrl.image} className=" rounded-lg"></img>
+          <div className="flex justify-center m-5 flex-wrap items-center md:flex-col">
+            <img src={dataUrl.image} className="srounded-lg"></img>
             <Link
-              href={`https://dummyapisds.herokuapp.com/dl?url=${encodeURIComponent(
+              href={`${SiteDetails.api}/dl?url=${encodeURIComponent(
                 dataUrl.image
               )}&type=${'png'}&title=${Math.floor(
                 Math.random() * 100000000000
@@ -149,7 +150,7 @@ export const Profile = (): JSX.Element => {
         <h2>Download Instagram profile picture online</h2>
         <p>
           {' '}
-          Instavideosave.net offers a free web-based tool which allows you to
+          insta.net offers a free web-based tool which allows you to
           download Instagram profile picture or dp, it's a quick and easy way to
           get your Instagram dp or profile picture downloaded offline to your
           device.{' '}
@@ -167,7 +168,7 @@ export const Profile = (): JSX.Element => {
           your mobile, tablet, pc or iOS:-
         </p>
         <ol>
-          <li>Open "Instavideosave.net".</li>
+          <li>Open "insta.net".</li>
           <li>Type Username or paste Profile link in input field.</li>
           <li>Click "Download" button,</li>
           <li>Done, your profile picture has been downloaded.</li>

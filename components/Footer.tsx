@@ -5,7 +5,7 @@ const Footer = (): JSX.Element => {
     <div className="max-w-2xl m-auto">
       <div className="bg-blue-500 text-white rounded-lg p-2 m-3">
         <p>
-          <b>Instavideosave.com</b> is not affiliated with Instagram™ and not we
+          <b>insta.com</b> is not affiliated with Instagram™ and not we
           host any of media on our servers all the media content is delivered
           through Instagram CDN and belongs to their respective owners.
         </p>
@@ -53,7 +53,7 @@ const Footer = (): JSX.Element => {
           in India
         </div>
         <div className="max-w-5xl px-3 mx-auto text-center">
-          © 2020-2021 InstaVideoSave
+          © 2020-2021 insta
           <span className="text-blue-500 font-bold">.Net</span>
         </div>
       </footer>{' '}

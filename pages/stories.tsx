@@ -8,6 +8,7 @@ import { useState } from 'react';
 import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
 import { MetaProps } from '../types/layout';
+import { SiteDetails } from '../utils/setup';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -45,7 +46,7 @@ export const Stories = (): JSX.Element => {
       };
 
       const data = await fetch(
-        'https://dummyapisds.herokuapp.com/stories',
+        `${SiteDetails.api}/stories`,
         requestOptions
       ).then((response) => {
         setloading(false);
@@ -64,9 +65,8 @@ export const Stories = (): JSX.Element => {
     }
   };
   const customMeta: MetaProps = {
-    title: `Download Instagram Stories Videos and View Anonymously`,
-    description: 'Download Instagram Stories Videos and View Anonymously',
-    type: 'article',
+    title: SiteDetails.stories.title,
+    description: SiteDetails.stories.description,
   };
   return (
     <Layout customMeta={customMeta}>
@@ -105,7 +105,6 @@ export const Stories = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
-
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Usernames.. or maybe server issue..
@@ -115,14 +114,14 @@ export const Stories = (): JSX.Element => {
         )}
         <br />
         {loading ? <SvgComponent /> : ''}
-
         <DisplayPage data={dataUrl} type="mp4" />
+        // add html content here!!!
         <div className="prose font-poppins dark:prose-dark">
           <h2>Download Instagram story videos online</h2>
           <p>
-            Instavideosave.net offers a free web-based tool which allows you to
-            download Instagram stories, it's a quick and easy way to get your
-            Instagram stories downloaded offline to your device.
+            insta.net offers a free web-based tool which allows you to download
+            Instagram stories, it's a quick and easy way to get your Instagram
+            stories downloaded offline to your device.
           </p>
 
           <p>
@@ -139,7 +138,7 @@ export const Stories = (): JSX.Element => {
             Instagram stories online to your mobile, tablet, pc or iOS:-
           </p>
           <ol>
-            <li>Open "Instavideosave.net".</li>
+            <li>Open "insta.net".</li>
             <li>Type Username or paste Story link in input field.</li>
             <li>Click "Download" button,</li>
             <li>Done, your story has been downloaded.</li>
