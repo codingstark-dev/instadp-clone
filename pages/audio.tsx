@@ -9,6 +9,7 @@ import SvgComponent from './../components/SvgLoader';
 import Link from 'next/link';
 import { SiteDetails } from '../utils/setup';
 import { MetaProps } from '../types/layout';
+import AdSense from 'react-ssr-adsense';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -60,12 +61,12 @@ export const Audio = (): JSX.Element => {
       setdataUrl(data);
     }
   };
-const customMeta: MetaProps = {
-  title: SiteDetails.audio.title,
-  description: SiteDetails.audio.description,
-};
+  const customMeta: MetaProps = {
+    title: SiteDetails.audio.title,
+    description: SiteDetails.audio.description,
+  };
   return (
-    <Layout customMeta={customMeta} >
+    <Layout customMeta={customMeta}>
       <div className="max-w-2xl m-auto text-center">
         <h1 className="font-bold text-2xl mb-1 mt-2">
           Download Instagram Reels
@@ -73,6 +74,13 @@ const customMeta: MetaProps = {
         <p className="opacity-80">
           Download Instagram Reels video with our Reels Downloader
         </p>
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot1}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />
         <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
@@ -84,7 +92,7 @@ const customMeta: MetaProps = {
           <button
             type="submit"
             onClick={handleButton}
-            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-indigo-600  w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -111,8 +119,8 @@ const customMeta: MetaProps = {
         )}
         <br />
         {loading == true ? <SvgComponent /> : ''}
-       
-        {dataUrl != undefined 
+
+        {dataUrl != undefined
           ? dataUrl.video?.map((e, index) => {
               return (
                 <div className="flex flex-wrap justify-center m-5" key={index}>
@@ -133,7 +141,7 @@ const customMeta: MetaProps = {
                       Math.random() * 100000000000
                     )}`}
                   >
-                    <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+                    <button className="mt-3 bg-indigo-600  w-[160px] flex justify-center h-8 items-center rounded text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4 text-white"
@@ -153,47 +161,13 @@ const customMeta: MetaProps = {
               );
             })
           : ''}
-        {/* <video controls className="m-1 rounded-lg">
-        <source src={data} />
-      </video> */}
-        {/* 
-
-      <h1>Home Page</h1>
-      <p>Next.js starter for your next blog or personal site. Built with:</p>
-      <ul className="list-disc pl-4 my-6">
-        <li>Next.js</li>
-        <li className="mt-2">Typescript</li>
-        <li className="mt-2">MDX</li>
-        <li className="mt-2">Tailwind CSS</li>
-      </ul>
-
-      <a
-        href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
-        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
-      >
-        Get the source code!
-      </a>
-
-      {posts.map((post) => (
-        <article key={post.slug} className="mt-12">
-          <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-            {format(parseISO(post.date), 'MMMM dd, yyyy')}
-          </p>
-          <h1 className="mb-2 text-xl">
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
-                {post.title}
-              </a>
-            </Link>
-          </h1>
-          <p className="mb-3">{post.description}</p>
-          <p>
-            <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
-              <a>Read More</a>
-            </Link>
-          </p>
-        </article>
-      ))} */}
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot2}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />
       </div>
     </Layout>
   );

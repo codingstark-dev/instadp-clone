@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = (): JSX.Element => {
   return (
     <div className="max-w-2xl m-auto">
-      <div className="bg-blue-500 text-white rounded-lg p-2 m-3">
+      <div className="bg-indigo-600  text-white rounded-lg p-2 m-3">
         <p>
           <b>insta.com</b> is not affiliated with Instagram™ and not we
           host any of media on our servers all the media content is delivered
@@ -31,7 +31,7 @@ const Footer = (): JSX.Element => {
         </div>{' '}
         <div className="max-w-5xl px-1 mx-auto text-center  ">
           Developed By
-          <span className="text-blue-500 font-bold">
+          <span className="text-indigo-600  font-bold">
             <a href="https://codingstark.com/portfolio" rel="sponsored">
               {' '}
               codingstark
@@ -40,7 +40,7 @@ const Footer = (): JSX.Element => {
           Made with
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-blue-500 m-auto "
+            className="h-6 w-6 text-indigo-600  m-auto "
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -53,8 +53,8 @@ const Footer = (): JSX.Element => {
           in India
         </div>
         <div className="max-w-5xl px-3 mx-auto text-center">
-          © 2020-2021 insta
-          <span className="text-blue-500 font-bold">.Net</span>
+          © Insta
+          <span className="text-indigo-600  font-bold">.Net</span> - {new Date().getFullYear()}
         </div>
       </footer>{' '}
     </div>

@@ -9,6 +9,7 @@ import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
 import { MetaProps } from '../types/layout';
 import { SiteDetails } from '../utils/setup';
+import AdSense from 'react-ssr-adsense';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -74,6 +75,14 @@ export const Index = (): JSX.Element => {
           Instagram Reels Downloader
         </h1>
         <p className="opacity-80">Download Instagram videos online for free.</p>
+        {/* adsense1 */}
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot1}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />
         <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
@@ -85,7 +94,7 @@ export const Index = (): JSX.Element => {
           <button
             type="submit"
             onClick={handleButton}
-            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-indigo-600  w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -112,10 +121,20 @@ export const Index = (): JSX.Element => {
         <br />
         {loading ? <SvgComponent /> : ''}
         <DisplayPage data={dataUrl} type="mp4" />
-
+        {/* adsense2 */}
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot1}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />
         {/* add html content here!!! */}
         <div className="nuxt-content prose font-poppins dark:prose-dark">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ullam non atque maxime nesciunt eveniet quam dolor omnis molestiae qui reprehenderit harum a, recusandae architecto odio ea. Ducimus, at molestias.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+          ullam non atque maxime nesciunt eveniet quam dolor omnis molestiae qui
+          reprehenderit harum a, recusandae architecto odio ea. Ducimus, at
+          molestias.
           <h2 id="instagram-reels-video-download-online---reels-video-downloader">
             <a
               aria-hidden="true"
@@ -132,7 +151,6 @@ export const Index = (): JSX.Element => {
             device. You can save any reels videos in computer or phone gallery
             and view them offline anytime.
           </p>
-
           <p>
             We do not require any information for accessinng our tool, so you
             don't need to worry about providing your login details. Also we do

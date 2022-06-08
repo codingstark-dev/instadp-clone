@@ -9,6 +9,7 @@ import DisplayPage from './../components/DisplayDlpage';
 import SvgComponent from './../components/SvgLoader';
 import { SiteDetails } from '../utils/setup';
 import { MetaProps } from '../types/layout';
+import AdSense from 'react-ssr-adsense';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -76,6 +77,13 @@ const customMeta: MetaProps = {
         <p className="opacity-80">
           Download Instagram Reels video with our Reels Downloader
         </p>
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot1}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />{' '}
         <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
@@ -87,7 +95,7 @@ const customMeta: MetaProps = {
           <button
             type="submit"
             onClick={handleButton}
-            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-indigo-600  w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +112,6 @@ const customMeta: MetaProps = {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
-
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Url..
@@ -115,7 +122,13 @@ const customMeta: MetaProps = {
         <br />
         {loading ? <SvgComponent /> : ''}
         <DisplayPage data={dataUrl} type="mp4" />
-
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot2}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />{' '}
         {/* <video controls className="m-1 rounded-lg">
         <source src={data} />
       </video> */}
@@ -132,7 +145,7 @@ const customMeta: MetaProps = {
 
       <a
         href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
-        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
+        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-indigo-600  hover:bg-blue-700 hover:text-white dark:hover:text-white"
       >
         Get the source code!
       </a>

@@ -29,7 +29,7 @@ const DisplayPage = (data: props) => {
                     Math.random() * 100000000000
                   )}`}
                 >
-                  <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+                  <button className="mt-3 bg-indigo-600  w-[160px] flex justify-center h-8 items-center rounded text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-4 w-4 text-white"
@@ -63,7 +63,7 @@ const DisplayPage = (data: props) => {
                     Math.random() * 100000000000
                   )}`}
                 >
-                  <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+                  <button className="mt-3 bg-indigo-600  w-[160px] flex justify-center h-8 items-center rounded text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-4 w-4 text-white"

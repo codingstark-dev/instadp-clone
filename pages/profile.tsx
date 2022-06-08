@@ -9,6 +9,7 @@ import Link from 'next/link';
 import SvgComponent from '../components/SvgLoader';
 import { MetaProps } from '../types/layout';
 import { SiteDetails } from '../utils/setup';
+import AdSense from 'react-ssr-adsense';
 
 // type IndexProps = {
 //   posts: PostType[];
@@ -77,6 +78,13 @@ export const Profile = (): JSX.Element => {
         <p className="opacity-80">
           Download Instagram profile (dp) online for free.
         </p>
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot1}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />{' '}
         <div className="text-gray-600 shadow-md rounded-lg border-[1px] dark:bg-gray-200 flex">
           <input
             onChange={handleSearch}
@@ -88,7 +96,7 @@ export const Profile = (): JSX.Element => {
           <button
             type="submit"
             onClick={handleButton}
-            className=" mt-3 mr-3 bg-blue-600 w-[94px] flex justify-center h-8 items-center rounded text-white"
+            className=" mt-3 mr-3 bg-indigo-600  w-[94px] flex justify-center h-8 items-center rounded text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +113,6 @@ export const Profile = (): JSX.Element => {
             <span className="text-sm mr-1">Download</span>
           </button>
         </div>
-
         {errorBol ? (
           <div className="text-red-500 text-center font-semibold mt-1">
             Please Enter Valid Username..
@@ -125,7 +132,7 @@ export const Profile = (): JSX.Element => {
                 Math.random() * 100000000000
               )}`}
             >
-              <button className="mt-3 bg-blue-600 w-[160px] flex justify-center h-8 items-center rounded text-white">
+              <button className="mt-3 bg-indigo-600  w-[160px] flex justify-center h-8 items-center rounded text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-white"
@@ -145,35 +152,43 @@ export const Profile = (): JSX.Element => {
         ) : (
           ''
         )}
-      
-      <div className="prose font-poppins dark:prose-dark">
-        <h2>Download Instagram profile picture online</h2>
-        <p>
-          {' '}
-          insta.net offers a free web-based tool which allows you to
-          download Instagram profile picture or dp, it's a quick and easy way to
-          get your Instagram dp or profile picture downloaded offline to your
-          device.{' '}
-        </p>
-        <p>
-          Instagram is without a doubt one of the most popular social networking
-          platforms with over 1 billion monthly active users. If you ever wanted
-          to download instagram dp or instagram profile photo of yours and other
-          instagram users, you can do it right from your mobile, tablet, iPhone
-          or iPad, or any other device and it’s a lot easier than you think.
-        </p>
-        <h2>How to download instagram profile photo(dp)?</h2>
-        <p>
-          Follow below steps to download your Instagram dp or profile photo to
-          your mobile, tablet, pc or iOS:-
-        </p>
-        <ol>
-          <li>Open "insta.net".</li>
-          <li>Type Username or paste Profile link in input field.</li>
-          <li>Click "Download" button,</li>
-          <li>Done, your profile picture has been downloaded.</li>
-        </ol>
-      </div></div>
+        <AdSense
+          client={SiteDetails.pub_id}
+          slot={SiteDetails.slot2}
+          style={{ display: 'block' }}
+          format="auto"
+          responsive="true"
+        />
+        <div className="prose font-poppins dark:prose-dark">
+          <h2>Download Instagram profile picture online</h2>
+          <p>
+            {' '}
+            insta.net offers a free web-based tool which allows you to download
+            Instagram profile picture or dp, it's a quick and easy way to get
+            your Instagram dp or profile picture downloaded offline to your
+            device.{' '}
+          </p>
+          <p>
+            Instagram is without a doubt one of the most popular social
+            networking platforms with over 1 billion monthly active users. If
+            you ever wanted to download instagram dp or instagram profile photo
+            of yours and other instagram users, you can do it right from your
+            mobile, tablet, iPhone or iPad, or any other device and it’s a lot
+            easier than you think.
+          </p>
+          <h2>How to download instagram profile photo(dp)?</h2>
+          <p>
+            Follow below steps to download your Instagram dp or profile photo to
+            your mobile, tablet, pc or iOS:-
+          </p>
+          <ol>
+            <li>Open "insta.net".</li>
+            <li>Type Username or paste Profile link in input field.</li>
+            <li>Click "Download" button,</li>
+            <li>Done, your profile picture has been downloaded.</li>
+          </ol>
+        </div>
+      </div>
     </Layout>
   );
 };

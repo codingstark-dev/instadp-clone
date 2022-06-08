@@ -1,12 +1,15 @@
 //! enter your site details here
 
 let SiteDetails = {
+    "googleAnalytic": "UA-XXXXXXXX-X",
     'title': "Insta Xyz",
     'website': 'https://www.example.com',
     'website_name': 'insta',
-    "api": "https://dummyapisds.herokuapp.com",
+    "api": "http://localhost:3000",
     "domain_extension": "com",
-    'description': 'Example description',
+    'description': 'Example description', "pub_id": "ca-pub-XXXXXXXXXXXXXXXX",
+    "slot1": "xxxxx",
+    "slot2": "xxxxx",
     'profile': {
         'description': 'Example description',
         "title": ""
@@ -31,7 +34,7 @@ let SiteDetails = {
         'description': 'Example description',
         "title": ""
     },
-     "reels": {
+    "reels": {
         'description': 'Example description',
         "title": ""
     }

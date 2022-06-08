@@ -12,7 +12,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/reels'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -39,7 +39,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/profile'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -67,7 +67,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/stories'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -100,7 +100,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/audio'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -127,7 +127,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/photo'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -154,7 +154,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/video'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
@@ -181,7 +181,7 @@ const RouteNavBar = (): JSX.Element => {
             <a
               className={
                 router.pathname == '/igtv'
-                  ? ' hover:text-blue-400 text-blue-500 dark:hover:text-blue-300'
+                  ? ' hover:text-blue-400 text-indigo-600  dark:hover:text-blue-300'
                   : ' hover:text-blue-400  dark:hover:text-blue-300'
               }
             >
